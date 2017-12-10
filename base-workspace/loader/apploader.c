@@ -309,8 +309,8 @@ ER load_application(const void *mod_data, SIZE mod_data_sz) {
 		SVC_PERROR(dmloader_rmv_ldm(1));
 	}
 	chg_status(STATUS_IDLE);
-	for(ID i = EV3_PORT_A; i <= EV3_PORT_D; i++)
-        ev3_motor_config(i, NONE_MOTOR);
+	static motor_type_t types = { NONE_MOTOR, NONE_MOTOR, NONE_MOTOR, NONE_MOTOR };
+	ev3_motor_config_all(types);
 
 	return ercd;
 }
